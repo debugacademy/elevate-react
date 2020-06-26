@@ -15,9 +15,9 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "react-scripts build && cp dist/main.js ../../drupal-react/web/modules/custom/debugacademy_react/js/tasks-app.js",
-    "deploy": "react-scripts build && webpack --config webpack.config.js --mode=development && cp dist/build/static/js/bundle.min.js ../../drupal-react/web/modules/custom/debugacademy_react/js/tasks-app.js",
-    "drupal": "react-scripts build && webpack --config webpack.config.js --mode=development && cp dist/build/static/js/bundle.min.js ../../drupal-react/web/modules/custom/debugacademy_react/js/tasks-app.js"
+    "build": "react-scripts build && cp dist/main.js ../../drupal*/web/modules/custom/debugacademy_react/js/tasks-app.js",
+    "deploy": "react-scripts build && webpack --config webpack.config.js --mode=development && cp dist/build/static/js/bundle.min.js ../../drupal*/web/modules/custom/debugacademy_react/js/tasks-app.js",
+    "drupal": "react-scripts build && webpack --config webpack.config.js --mode=development && cp dist/build/static/js/bundle.min.js ../../drupal*/web/modules/custom/debugacademy_react/js/tasks-app.js"
   },
   "eslintConfig": {
     "extends": "react-app"
