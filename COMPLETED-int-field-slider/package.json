@@ -1,0 +1,25 @@
+{
+  "name": "int-field-slider",
+  "version": "1.0.0",
+  "description": "Integer field slider widget for Drupal",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "standard",
+    "build": "webpack --mode=development && cp dist/main.js ../../drupal/web/themes/custom/debugacademy_theme/assets/react-int-fields.js"
+  },
+  "author": "Ashraf of Debug Academy",
+  "license": "ISC",
+  "dependencies": {
+    "rc-slider": "^8.6.9",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
