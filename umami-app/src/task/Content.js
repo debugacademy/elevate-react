@@ -29,7 +29,7 @@ function Content (props) {
         <DrupalContext.Consumer>
           {({siteUrl, endpoint}) => {
             // @TODO: when enabling new task creation, pass appropriate function from NodeDataManager to NodeList
-            return <NodeDataManager key={'recipe'} endpoint={siteUrl+endpoint} nodeType={'recipe'}>
+            return <NodeDataManager key={'recipe'} url={siteUrl} endpoint={endpoint} nodeType={'recipe'}>
             {({nodes, changeNodeLocal, submitNode, refreshData}) => (
               <NodeList nodes={nodes} updateNode={changeNodeLocal} submitNode={submitNode} refreshData={refreshData} />
             )}

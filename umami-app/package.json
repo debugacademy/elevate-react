@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -15,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && cp build/static/js/main.*chunk.js ../../drupal*/web/modules/custom/debugacademy_react/js/dist/main.js && cp build/static/js/2.*.js ../../drupal*/web/modules/custom/debugacademy_react/js/dist/chunk.js && cd ../../drupal*/ && ddev exec drush cr && cd - && echo 'deployed to local drupal site & cleared cache'"
+    "deploy": "npm run build && cp build/static/js/main.*chunk.js ../../drupal-react/web/modules/custom/debugacademy_react/js/dist/main.js && cp build/static/js/2.*.js ../../drupal-react/web/modules/custom/debugacademy_react/js/dist/chunk.js && cd ../../drupal-react/ && ddev exec drush cr && cd - && echo 'deployed to local drupal site & cleared cache'"
   },
   "eslintConfig": {
     "extends": "react-app"

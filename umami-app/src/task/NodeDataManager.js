@@ -70,7 +70,7 @@ const NodeDataManager = (props) => {
   }
 
   const loadAllNodes = (nodeType) => {
-    var url = props.endpoint + '/node/' + nodeType; // + '?include=field_project';
+    var url = props.url + props.endpoint + '/node/' + nodeType; // + '?include=field_project';
     axios.get(url)
       .then(result => {
         const formattedNodeData = formatNodeDataArray(result.data.data);
@@ -84,7 +84,7 @@ const NodeDataManager = (props) => {
   }
 
   const loadNode = (nodeType, uuid) => {
-    var url = props.endpoint + '/node/' + nodeType + '/' + uuid;
+    var url = props.url + props.endpoint + '/node/' + nodeType + '/' + uuid;
     axios.get(url)
       .then(result => {
         const formattedNodeData = formatNodeData(result.data.data);
@@ -140,6 +140,14 @@ const NodeDataManager = (props) => {
     localStorage.setItem('node-' + changedNode.uuid, JSON.stringify(changedNode));
   }
 
+  const getSessionToken = async () => {
+    return axios.get(props.url + '/session/token')
+      .then(result => {
+        console.log('session token', result)
+        return result;
+      })
+  }
+
   const createNode = () => {
     if (nodes && nodes.new) {
       // We already have an unsaved node, not creating another one. 
@@ -158,20 +166,24 @@ const NodeDataManager = (props) => {
   }
 
   const submitNewNode = (node) => {
-    var url = props.endpoint + '/node/recipe';
+    var url = props.url + props.endpoint + '/node/recipe';
     var preparedData = normalizeNodeData(node);
-    axios.post(url, JSON.stringify(preparedData),
-      {
-        headers: {
-          "Accept": "application/vnd.api+json",
-          "Content-type": "application/vnd.api+json"
-        }
-      })
-      .then(function(response) {
-        console.log('Saved successfully', response);
-      })
-      .catch(error => {
-      });
+    getSessionToken().then((token) => {
+      return axios.post(url, JSON.stringify(preparedData),
+        {
+          headers: {
+            "Accept": "application/vnd.api+json",
+            "Content-type": "application/vnd.api+json",
+            'X-CSRF-Token': token.data
+          }
+        })
+        .then(function(response) {
+          console.log('Saved successfully', response);
+        })
+        .catch(error => {
+        });
+
+    })
   }
 
   const normalizeNodeData = (node) => {
@@ -202,21 +214,24 @@ const NodeDataManager = (props) => {
     if (node.id === 'new') {
       return submitNewNode(node);
     }
-    var url = props.endpoint + '/node/recipe/' + node.id;
+    var url = props.url + props.endpoint + '/node/recipe/' + node.id;
     const preparedData = normalizeNodeData(node);
     console.log('Submitting node..', preparedData)
-    axios.patch(url, JSON.stringify(preparedData),
-      {
-        headers: {
-          "Accept": "application/vnd.api+json",
-          "Content-type": "application/vnd.api+json"
-        }
+    getSessionToken().then((token) => {
+      axios.patch(url, JSON.stringify(preparedData),
+        {
+          headers: {
+            "Accept": "application/vnd.api+json",
+            "Content-type": "application/vnd.api+json",
+            'X-CSRF-Token': token.data
+          }
+        })
+        .then(function(response) {
+          console.log('Saved successfully', response);
+        })
+        .catch(error => {
+        });
       })
-      .then(function(response) {
-        console.log('Saved successfully', response);
-      })
-      .catch(error => {
-      });
   }
 
   const refreshData = () => {
