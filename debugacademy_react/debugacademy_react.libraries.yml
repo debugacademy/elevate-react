@@ -1,0 +1,11 @@
+react-manage:
+  js:
+    js/dist/load.js: {}
+    js/dist/chunk.js: {}
+    js/dist/main.js: {}
+react-fields:
+  js:
+    js/react-int-fields.js: {}
+  css:
+    theme:
+      css/slider.css: {}

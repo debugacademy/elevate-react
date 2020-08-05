@@ -1,0 +1,7 @@
+debugacademy_react.react_controller:
+  path: '/react'
+  defaults:
+    _controller: '\Drupal\debugacademy_react\Controller\ReactController::content'
+    _title: 'Debug Academy: React'
+  requirements:
+    _permission: 'access content'
