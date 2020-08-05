@@ -249,7 +249,7 @@ const NodeDataManager = (props) => {
 
   React.useEffect(() => {
     refreshData();
-  }, [])
+  })
 
   let node = currentNode
   const renderPropParameters = { changeNodeLocal, refreshData, createNode, loadNode, submitNode, dataFetched, nodes, node, inheritProps: props };
